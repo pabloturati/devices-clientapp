@@ -1,10 +1,19 @@
+# devices-clientapp
+
+## Background and general information.
+
+This preject is a sample frontend requested as an interview project by [ninjarmm](https://www.ninjarmm.com/).  My name is [Pablo Turati](https://github.com/pabloturati) and I am developing this code. 
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
 
 ## Available Scripts
 
 In the project directory, you can run:
 
 ### `yarn start`
+
+IMPORTANT:  This project is setup to run by default in PORT 5000.  This change from the usual PORT 3000 was implemented to have the API [devicesTask_serverApp](https://github.com/NinjaMSP/devicesTask_serverApp) run on its default port 3000. <br />
 
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
