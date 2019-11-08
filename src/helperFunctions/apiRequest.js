@@ -18,7 +18,7 @@ const getParams = {
 export const getData = async (url, successCb, errorCb) => {
   await axios
     .get(url, getParams)
-    .then(response => successCb(response))
+    .then(response => successCb(response.data))
     .catch(error => {
       console.error(error)
       if (errorCb) errorCb(error)

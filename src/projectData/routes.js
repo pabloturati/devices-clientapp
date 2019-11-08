@@ -1,5 +1,5 @@
 const routes = {
-  home: '/home',
+  home: '/',
   add: '/add-device',
   edit: '/edit-device',
   remove: '/remove-device'

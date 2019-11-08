@@ -15,6 +15,7 @@
 
   &__drop-container {
     @extend %flex-space;
+    justify-content: space-around;
     flex-wrap: wrap;
     width: 100%;
   }

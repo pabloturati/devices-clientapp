@@ -36,7 +36,7 @@ const DeviceCard = ({
 
 DeviceCard.propTypes = {
   id: PropTypes.string.isRequired,
-  hdd_capacity: PropTypes.string.isRequired,
+  hdd_capacity: PropTypes.number.isRequired,
   system_name: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   logo: PropTypes.string.isRequired,

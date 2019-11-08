@@ -17,37 +17,42 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const Dropdown = props => {
+const Dropdown = ({ label, value, onChange, options, subtitle }) => {
   const classes = useStyles()
-  const [age, setAge] = React.useState('')
-
-  const handleChange = event => {
-    setAge(event.target.value)
-  }
 
   return (
     <div>
       <FormControl className={classes.formControl}>
-        <InputLabel id='demo-simple-select-helper-label'>Age</InputLabel>
+        <InputLabel>{label}</InputLabel>
         <Select
           labelId='demo-simple-select-helper-label'
-          id='demo-simple-select-helper'
-          value={age}
-          onChange={handleChange}
+          value={value}
+          onChange={event => {
+            onChange(event.target.value)
+          }}
         >
-          <MenuItem value=''>
-            <em>None</em>
-          </MenuItem>
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          {options.map((option, idx) => (
+            <MenuItem key={idx} value={option}>
+              {option}
+            </MenuItem>
+          ))}
         </Select>
-        <FormHelperText>Some important helper text</FormHelperText>
+        {subtitle && <FormHelperText>{subtitle}</FormHelperText>}
       </FormControl>
     </div>
   )
 }
 
-Dropdown.propTypes = {}
+Dropdown.propTypes = {
+  label: PropTypes.string.isRequired,
+  subtitle: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  options: PropTypes.arrayOf(PropTypes.string).isRequired,
+  onChange: PropTypes.func.isRequired
+}
+
+Dropdown.defaultProps = {
+  options: []
+}
 
 export default Dropdown

@@ -4,35 +4,36 @@ import routes from 'projectData/routes'
 
 // Pages
 import Home from 'atomicDesign/pages/Home/Home'
+import Edit from 'atomicDesign/pages/Edit/Edit'
 
 const App = () => {
+  console.log(routes)
   const routeList = [
     {
       exact: true,
-      route: routes.add,
-      component: Home
+      path: routes.add,
+      component: Edit
     },
     {
       exact: true,
-      route: routes.edit,
-      component: Home
+      path: routes.edit,
+      component: Edit
     },
     {
       exact: true,
-      route: routes.remove,
-      component: Home
+      path: routes.remove,
+      component: Edit
     },
     {
       component: Home
     }
   ]
-
   return (
     <div className='App'>
       <BrowserRouter>
         <Switch>
           {routeList.map((route, idx) => (
-            <Route key={idx} {...route} />
+            <Route key={`${route}.idx`} exact {...route} />
           ))}
         </Switch>
       </BrowserRouter>

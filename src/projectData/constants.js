@@ -27,3 +27,5 @@ export const stationTypes = [
     type: 'Mac'
   }
 ]
+
+export const sortByOptions = ['None', 'System Name', 'HDD Capacity']
