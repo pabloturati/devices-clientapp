@@ -7,7 +7,6 @@ import Home from 'atomicDesign/pages/Home/Home'
 import Edit from 'atomicDesign/pages/Edit/Edit'
 
 const App = () => {
-  console.log(routes)
   const routeList = [
     {
       exact: true,
