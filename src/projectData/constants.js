@@ -7,7 +7,7 @@ import winLogo from 'projectAssets/stations/winlogo.png'
 import macDrive from 'projectAssets/drives/macdrive.png'
 import winDrive from 'projectAssets/drives/windrive.png'
 
-export const stationTypes = [
+export const STATION_TYPES = [
   {
     identifier: 'WINDOWS_WORKSTATION',
     drive: winDrive,
@@ -28,4 +28,14 @@ export const stationTypes = [
   }
 ]
 
-export const sortByOptions = ['None', 'System Name', 'HDD Capacity']
+export const BASE_FILTER_FLAGS = {
+  all: 'All',
+  none: 'None'
+}
+
+export const SORT_BY_OPTIONS = [
+  'None',
+  'System Name',
+  'Highest HDD Capacity',
+  'Lowest HDD Capacity'
+]
