@@ -1,0 +1,23 @@
+@import "styles/helpers/_flex.scss";
+@import "styles/components/_text.scss";
+
+.o__header {
+  height: 80px;
+  padding: 0 16px;
+  background-color: var(--white);
+  @extend %flex-space;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  z-index: 2;
+  width: 100%;
+  box-sizing: border-box;
+
+  img {
+    width: 120px;
+  }
+
+  h1 {
+    @extend %main-title;
+  }
+}

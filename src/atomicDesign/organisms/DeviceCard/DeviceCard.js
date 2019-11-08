@@ -26,7 +26,7 @@ const DeviceCard = ({
         </div>
         <div className='o__device-card__capacity'>
           <img src={drive} alt='Disk' />
-          <ContentLabel label='Capacity' content={`${capacity} GB`} />
+          <ContentLabel label='Capacity:' content={`${capacity} GB`} />
         </div>
       </div>
       <img className='o__device-card__type-img' src={logo} alt='System logo' />

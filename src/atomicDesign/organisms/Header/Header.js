@@ -1,13 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-// import './Header.scss'
+import logo from 'projectAssets/Logo_header.svg'
+import './Header.scss'
 
 const Header = props => {
   return (
-    <div className='o__header'>
-      Header
-      {/* Header */}
-    </div>
+    <header className='o__header'>
+      <img src={logo} alt='Ninja RMM logo' />
+      <h1>Device management tool</h1>
+    </header>
   )
 }
 

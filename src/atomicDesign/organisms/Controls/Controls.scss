@@ -1,0 +1,21 @@
+@import "styles/helpers/_flex.scss";
+@import "styles/components/_text.scss";
+
+.o__controls {
+  margin: 100px 16px 0 16px;
+  color: $main-color;
+  padding: 16px;
+  box-sizing: border-box;
+  background-color: var(--white);
+  border-radius: 5px;
+
+  h2 {
+    @extend %secondary-title;
+  }
+
+  &__drop-container {
+    @extend %flex-space;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+}
