@@ -1,0 +1,16 @@
+@import "styles/helpers/_flex.scss";
+@import "styles/components/_text.scss";
+
+.a__content-label {
+  @extend %flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+
+  h5 {
+    margin-right: 4px;
+    @extend %label-text;
+  }
+  span {
+    @extend %normal-text;
+  }
+}

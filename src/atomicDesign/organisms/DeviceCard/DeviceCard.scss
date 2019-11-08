@@ -1,0 +1,27 @@
+@import "styles/helpers/_flex.scss";
+
+.o__device-card {
+  @extend %flex-space;
+  align-items: center;
+  padding: 16px;
+  border: 1px var(--light-gray) solid;
+  border-radius: 5px;
+  margin-bottom: 12px;
+  box-shadow: 0 10px 15px 0 var(--card-boxshadow);
+  background-color: var(--light-gray);
+
+  &__type-img {
+    width: 80px;
+  }
+
+  &__capacity {
+    margin-top: 8px;
+    @extend %flex;
+    align-items: center;
+
+    img {
+      width: 50px;
+      margin-right: 8px;
+    }
+  }
+}

@@ -7,20 +7,21 @@ import apiEndpoints from 'projectData/apiEndpoints'
 import { getData } from 'helperFunctions/apiRequest'
 
 const Home = props => {
-  const [devices, setDevices] = useState(null)
+  const [allDevices, setDevices] = useState(null)
 
-  const fetchDevices = () =>
-    getData(apiEndpoints.getDevices, devices => setDevices(devices))
+  const fetchDevices = () => {
+    getData(apiEndpoints.getDevices, devices => setDevices(devices.data))
+  }
 
   useEffect(fetchDevices, [])
 
-  console.log(devices)
+  const matchingDevices = allDevices
 
   return (
     <div className='p__home'>
       <Header />
       <Controls />
-      <Results />
+      <Results devices={matchingDevices} />
     </div>
   )
 }
