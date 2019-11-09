@@ -1,0 +1,9 @@
+@import "styles/components/_page-spacing.scss";
+
+.l__layout {
+  padding-top: $header-height;
+}
+body {
+  font-family: var(--project-font);
+  background-color: var(--app-background);
+}

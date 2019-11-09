@@ -1,23 +1,52 @@
 @import "styles/helpers/_flex.scss";
 @import "styles/components/_text.scss";
+@import "styles/components/_page-spacing.scss";
+@import "styles/layout/_break-points.scss";
 
 .o__header {
-  height: 80px;
+  height: $header-height;
   padding: 0 16px;
   background-color: var(--white);
   @extend %flex-space;
+  flex-wrap: wrap;
   align-items: center;
   position: absolute;
   top: 0;
   z-index: 2;
   width: 100%;
   box-sizing: border-box;
+  text-align: right;
 
   img {
     width: 120px;
+
+    @media screen and (max-width: $screen-md) {
+      width: 80px;
+    }
   }
 
   h1 {
     @extend %main-title;
+
+    @media screen and (max-width: $screen-md) {
+      width: 140px;
+      font-size: $medium-font-size;
+    }
+  }
+  &__nav {
+    @extend %flex;
+    justify-content: space-around;
+
+    @media screen and (max-width: $screen-md) {
+      width: 100%;
+    }
+
+    a:first-child {
+      margin-right: 20px;
+
+      @media screen and (max-width: $screen-md) {
+        width: 100%;
+      }
+    }
   }
 }

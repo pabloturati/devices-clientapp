@@ -1,27 +1,31 @@
 $main-color: var(--font-gray);
+$small-font-size: 12px;
+$medium-font-size: 14px;
+$large-font-size: 18px;
+$xlarge-font-size: 22px;
 
 %normal-text {
-  font-size: 12px;
+  font-size: $small-font-size;
   line-height: 18px;
   color: $main-color;
 }
 
 %label-text {
-  font-size: 14px;
+  font-size: $medium-font-size;
   line-height: 20px;
   font-weight: 600;
   color: $main-color;
 }
 
 %main-title {
-  font-size: 22px;
+  font-size: $xlarge-font-size;
   line-height: 24px;
   font-weight: 600;
   color: $main-color;
 }
 
 %secondary-title {
-  font-size: 18px;
+  font-size: $large-font-size;
   line-height: 20px;
   font-weight: 500;
   color: $main-color;

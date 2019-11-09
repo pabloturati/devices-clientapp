@@ -1,27 +1,21 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import routes from 'projectData/routes'
-
-// Pages
+import Layout from 'atomicDesign/logic/Layout/Layout'
 import Home from 'atomicDesign/pages/Home/Home'
-import Edit from 'atomicDesign/pages/Edit/Edit'
+import CRUDPage from 'atomicDesign/pages/CRUDPage/CRUDPage'
 
 const App = () => {
   const routeList = [
     {
       exact: true,
       path: routes.add,
-      component: Edit
+      component: CRUDPage
     },
     {
       exact: true,
       path: routes.edit,
-      component: Edit
-    },
-    {
-      exact: true,
-      path: routes.remove,
-      component: Edit
+      component: CRUDPage
     },
     {
       component: Home
@@ -30,11 +24,13 @@ const App = () => {
   return (
     <div className='App'>
       <BrowserRouter>
-        <Switch>
-          {routeList.map((route, idx) => (
-            <Route key={`${route}.idx`} exact {...route} />
-          ))}
-        </Switch>
+        <Layout>
+          <Switch>
+            {routeList.map((route, idx) => (
+              <Route key={`${route}.idx`} exact {...route} />
+            ))}
+          </Switch>
+        </Layout>
       </BrowserRouter>
     </div>
   )

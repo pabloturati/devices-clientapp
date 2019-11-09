@@ -32,3 +32,31 @@ export const useObject = initial => {
     }
   }
 }
+
+/**
+ * Custom setState hook to handle navigation redirect
+ * @function
+ * @param {object} initial - Initial content state
+ */
+
+export const useRedirect = (initialRedirectStatus = false) => {
+  const [toRedirect, setRedirect] = useState(initialRedirectStatus)
+  return {
+    toRedirect,
+    activateRedirect: () => setRedirect(true)
+  }
+}
+
+/**
+ * Custom setState hook to toggle values
+ * @function
+ * @param {bool} initial - Initial content state
+ */
+
+export const useToggleView = (initialState = false) => {
+  const [viewStatus, toggleStatus] = useState(initialState)
+  return {
+    viewStatus,
+    toggleViewStatus: () => toggleStatus(!viewStatus)
+  }
+}

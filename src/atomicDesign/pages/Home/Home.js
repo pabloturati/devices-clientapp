@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import PropTypes from 'prop-types'
-import Header from 'atomicDesign/organisms/Header/Header'
 import Controls from 'atomicDesign/organisms/Controls/Controls'
 import Results from 'atomicDesign/organisms/Results/Results'
 import apiEndpoints from 'projectData/apiEndpoints'
@@ -14,11 +12,11 @@ import { useObject } from 'sharedFunctions/customHooks'
 
 const { all, none } = BASE_FILTER_FLAGS
 
-const Home = props => {
+const Home = () => {
   // State handler for API device list
   const [allDevices, setDevices] = useState(null)
   const [visibleDevices, setVisibleDevices] = useState(null)
-  const [deviceList, setDeviceList] = useState([])
+  const [deviceList, setDeviceList] = useState(null)
 
   // State handler for filter status
   const { content: filterState, updateVal } = useObject({
@@ -61,9 +59,9 @@ const Home = props => {
     updateVal
   }
 
+  if (!allDevices || !visibleDevices || !deviceList) return null
   return (
     <div className='p__home'>
-      <Header />
       <Controls {...controlProps} />
       <Results devices={visibleDevices} />
     </div>
@@ -152,7 +150,5 @@ function createDeviceList (devices) {
   const typeArray = devices.map(device => device.type)
   return [all, ...new Set(typeArray)]
 }
-
-Home.propTypes = {}
 
 export default Home

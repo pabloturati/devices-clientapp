@@ -32,11 +32,6 @@ const Controls = ({ filterState, updateVal, deviceList }) => {
 }
 
 Controls.propTypes = {
-  // devices: PropTypes.arrayOf(
-  //   PropTypes.objectOf(
-  //     PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-  //   ).isRequired
-  // ),
   deviceList: PropTypes.arrayOf(PropTypes.string).isRequired,
   filterState: PropTypes.objectOf(PropTypes.string).isRequired,
   updateVal: PropTypes.func.isRequired

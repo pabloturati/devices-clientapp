@@ -1,8 +1,3 @@
 @import "styles/vendor/reset";
 @import "styles/base/color-palette";
 @import "styles/base/typography";
-
-body {
-  font-family: var(--project-font);
-  background-color: var(--app-background);
-}
