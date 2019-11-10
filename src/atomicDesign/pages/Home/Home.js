@@ -8,6 +8,10 @@ import { useObject } from 'sharedFunctions/customHooks'
 import { parseToFrontData } from 'sharedFunctions/sharedFunctions'
 
 const { all, none } = BASE_FILTER_FLAGS
+const initialFilter = {
+  currDeviceValue: all,
+  currSortValue: none
+}
 
 const Home = () => {
   // State handler for API device list
@@ -16,10 +20,7 @@ const Home = () => {
   const [deviceList, setDeviceList] = useState(null)
 
   // State handler for filter status
-  const { content: filterState, updateVal } = useObject({
-    currDeviceValue: all,
-    currSortValue: none
-  })
+  const { content: filterState, updateVal, mergeObj } = useObject(initialFilter)
 
   const setDataCb = devices => {
     setDevices(devices)
@@ -60,7 +61,8 @@ const Home = () => {
   const controlProps = {
     deviceList,
     filterState,
-    updateVal
+    updateVal,
+    clearFilter: () => mergeObj(initialFilter)
   }
 
   if (!allDevices || !visibleDevices || !deviceList) return null

@@ -13,10 +13,12 @@ const RoutedHeader = props => {
   const { pathname } = props.location
   return (
     <header className='o__header'>
-      <Link to={home}>
-        <img src={logo} alt='Ninja RMM logo' />
-      </Link>
-      <h1>Device management tool</h1>
+      <div className='o__header__titles'>
+        <Link to={home}>
+          <img src={logo} alt='Ninja RMM logo' />
+        </Link>
+        <h1>Device management tool</h1>
+      </div>
       <ButtonGroup className='o__header__nav' size='sm'>
         {pathname !== home && <LinkButton to={home} content={'Device List'} />}
         {pathname !== add && <LinkButton to={add} content={'Add device'} />}

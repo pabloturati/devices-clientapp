@@ -5,11 +5,8 @@
 
 .o__header {
   height: $header-height;
-  padding: 0 16px;
+  padding: 8px 16px;
   background-color: var(--white);
-  @extend %flex-space;
-  flex-wrap: wrap;
-  align-items: center;
   position: absolute;
   top: 0;
   z-index: 2;
@@ -17,16 +14,36 @@
   box-sizing: border-box;
   text-align: right;
 
+  @extend %flex-space;
+  align-items: center;
+  flex-wrap: wrap;
+
+  @media screen and (min-width: $screen-lg) {
+    justify-content: space-between;
+    flex-wrap: nowrap;
+  }
+
+  &__titles {
+    width: 100%;
+    @extend %flex-space;
+
+    @media screen and (min-width: $screen-lg) {
+      width: 80%;
+      justify-content: flex-start;
+    }
+  }
+
   img {
     width: 120px;
 
-    @media screen and (max-width: $screen-md) {
+    @media screen and (max-width: $screen-lg) {
       width: 80px;
     }
   }
 
   h1 {
     @extend %main-title;
+    margin-left: 50px;
 
     @media screen and (max-width: $screen-lg) {
       width: 140px;
@@ -35,7 +52,6 @@
   }
   &__nav {
     @extend %flex;
-    justify-content: space-around;
 
     @media screen and (max-width: $screen-lg) {
       width: 100%;
@@ -43,9 +59,8 @@
     }
 
     .a__base-button {
-      font-size: $small-font-size;
-      max-height: 30px;
-      width: 80px;
+      width: 100px;
+      font-size: $medium-font-size;
     }
 
     a:nth-child(2) {

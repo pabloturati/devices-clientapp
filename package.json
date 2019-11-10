@@ -19,7 +19,10 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "./node_modules/.bin/eslint . --fix"
+    "lint": "./node_modules/.bin/eslint . --fix",
+    "cypress:open": "cypress open",
+    "cypress": "node ./node_modules/cypress/bin/cypress run",
+    "generate-docs": "jsdoc -c ./jsdocconfig.json"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -37,8 +40,10 @@
     ]
   },
   "devDependencies": {
+    "cypress": "^3.6.1",
     "eslint": "^6.6.0",
     "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-cypress": "^2.7.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-node": "^10.0.0",
     "eslint-plugin-promise": "^4.2.1",

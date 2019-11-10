@@ -12,12 +12,14 @@ import { parseToFrontData } from 'sharedFunctions/sharedFunctions'
 import routes from 'projectData/routes'
 import './CRUDPage.scss'
 
-const CRUDPage = ({ match }) => {
+const CRUDPage = ({ match, location }) => {
   // Redirect state handler
   const { toRedirect, activateRedirect } = useRedirect()
 
   let deviceId = null
-  if (match.params.deviceId) deviceId = match.params.deviceId
+  if (match.params.deviceId) {
+    deviceId = match.params.deviceId
+  }
 
   // Loading state. It no deviceId, goes to false.
   const [loading, setLoading] = useState(!!deviceId)
@@ -50,7 +52,6 @@ const CRUDPage = ({ match }) => {
     if (!deviceId) return
     getData(`${apiEndpoints.getDevices}/${deviceId}`, handleGetDeviceSuccess)
   }
-
   useEffect(requestDeviceData, [deviceId])
 
   // Request API DELETEs device
@@ -94,6 +95,15 @@ const CRUDPage = ({ match }) => {
     message: confirmDeleteMessage
   }
 
+  // Clears edit device data if location changes to add route
+  const clearEditData = () => {
+    if (location.pathname === routes.add) {
+      deviceId = null
+      setInitialData(null)
+    }
+  }
+  useEffect(clearEditData, [location])
+
   if (toRedirect) return <Redirect to={routes.home} />
 
   return (
@@ -116,7 +126,8 @@ const CRUDPage = ({ match }) => {
 CRUDPage.propTypes = {
   match: PropTypes.objectOf(
     PropTypes.oneOfType([PropTypes.bool, PropTypes.string, PropTypes.object])
-  )
+  ),
+  location: PropTypes.object.isRequired
 }
 
 export default CRUDPage

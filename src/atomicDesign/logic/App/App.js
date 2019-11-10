@@ -27,7 +27,7 @@ const App = () => {
         <Layout>
           <Switch>
             {routeList.map((route, idx) => (
-              <Route key={`${route}.idx`} exact {...route} />
+              <Route key={`${route}.${idx}`} exact {...route} />
             ))}
           </Switch>
         </Layout>

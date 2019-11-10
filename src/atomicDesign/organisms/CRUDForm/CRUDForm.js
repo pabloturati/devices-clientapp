@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { Redirect } from 'react-router-dom'
 import { STATION_TYPES } from 'projectData/constants'
@@ -23,12 +23,20 @@ import {
 import BaseButton from 'atomicDesign/atoms/BaseButton/BaseButton'
 
 const CRUDForm = ({ initData }) => {
-  // Form values state handler. Initialized empty if creating new.
-  const { content: formValues, updateVal } = useObject({
+  const initialValues = {
     systemName: initData ? initData.system_name : '',
     systemType: initData ? initData.type : STATION_TYPES[0].type, // Defaults to Windows PC
     hddCapacity: initData ? initData.hdd_capacity : ''
-  })
+  }
+
+  // Form values state handler. Initialized empty if creating new.
+  const { content: formValues, updateVal, mergeObj } = useObject(initialValues)
+
+  const updateValues = () => {
+    mergeObj(initialValues)
+  }
+
+  useEffect(updateValues, [initData])
 
   const { systemName, systemType, hddCapacity } = formValues
 

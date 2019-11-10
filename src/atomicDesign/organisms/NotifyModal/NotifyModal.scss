@@ -7,7 +7,7 @@
   }
 
   p {
-    @extend %secondary-title;
+    @extend %label-text;
     margin-bottom: $general-padding;
     text-align: center;
   }
@@ -15,7 +15,6 @@
     text-align: center;
 
     .a__base-button {
-      height: 50px;
       width: 70px;
     }
   }

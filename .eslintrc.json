@@ -2,7 +2,8 @@
     "env": {
         "browser": true,
         "es6": true,
-        "jasmine": true
+        "jasmine": true,
+        "cypress/globals": true
     },
     "extends": [
         "standard",
@@ -21,13 +22,17 @@
     },
     "plugins": [
         "react",
-        "react-hooks"
+        "react-hooks",
+        "cypress"
     ],
     "rules": {
         "react/jsx-uses-react": "error",
         "react/jsx-uses-vars": "error",
         "react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
-        "react-hooks/exhaustive-deps": "warn" // Checks effect dependencies
+        "react-hooks/exhaustive-deps": "warn", // Checks effect dependencies
+        "cypress/no-assigning-return-values": "error",
+        "cypress/no-unnecessary-waiting": "error",
+        "cypress/assertion-before-screenshot": "warn"
     },
     "settings": {
         "react": {
