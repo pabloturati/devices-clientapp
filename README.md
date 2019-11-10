@@ -6,7 +6,7 @@ This project is a small frontend CRUD application for Devices containing: Device
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and uses visual elementes from [Reactstrap](https://reactstrap.github.io/) and [material-ui](https://material-ui.com/).
 
-Project automated testing uses the following frameworks: [cypress.io][https://www.cypress.io/] for functional testing and [Jest](https://jestjs.io/) with [Enzime](https://www.npmjs.com/package/enzyme) for unit testing.
+Project automated testing uses the following frameworks: [cypress][https://www.cypress.io/] for functional testing and [Jest](https://jestjs.io/) with [Enzime](https://www.npmjs.com/package/enzyme) for unit testing.
 
 Continuous deployment uses [Azure Pipelines](https://azure.microsoft.com/en-us/services/devops/pipelines/) for integration and testing using Github. Visit [this link](https://dev.azure.com/pabloturati/devices-clientapp/_build?definitionId=2) to see the project pipelines. 
 
@@ -42,7 +42,7 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 
 Code quality linting is installed using [StandardJS guidelines](https://standardjs.com/). `npm run lint` will perfomr and deep Standard JS lint and display code quality problems and errors. Configuration .eslintrc.json file may be found at the root folder.
 
-### `npm run generate-docs`
+#### `npm run generate-docs`
 
 To generate (update) project code documentation files.  Uses self documentation with JSDoc.  Project documentation files can be found in the /Docs directory.  For rerefence visit `/docs/index.html`
 
@@ -58,44 +58,10 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-#### `npm eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
 ## Continuous Deployment
 
 ### Production pipelines
 Continuous deployment uses [Azure Pipelines](https://azure.microsoft.com/en-us/services/devops/pipelines/) for integration and testing using Github.
 
 Visit [this link](https://dev.azure.com/pabloturati/devices-clientapp/_build?definitionId=2) to see the project pipelines. 
-
-## Learn More about `create-react-app`
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
 
