@@ -28,7 +28,7 @@
   h1 {
     @extend %main-title;
 
-    @media screen and (max-width: $screen-md) {
+    @media screen and (max-width: $screen-lg) {
       width: 140px;
       font-size: $medium-font-size;
     }
@@ -37,14 +37,21 @@
     @extend %flex;
     justify-content: space-around;
 
-    @media screen and (max-width: $screen-md) {
+    @media screen and (max-width: $screen-lg) {
       width: 100%;
+      justify-content: center;
     }
 
-    a:first-child {
-      margin-right: 20px;
+    .a__base-button {
+      font-size: $small-font-size;
+      max-height: 30px;
+      width: 80px;
+    }
 
-      @media screen and (max-width: $screen-md) {
+    a:nth-child(2) {
+      margin-left: 20px;
+
+      @media screen and (max-width: $screen-lg) {
         width: 100%;
       }
     }

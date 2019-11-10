@@ -1,6 +1,8 @@
+@import "styles/components/_page-spacing.scss";
+
 .o__crud-form {
   background-color: var(--light-gray);
-  margin: 16px;
-  padding: 16px;
-  border-radius: 5px;
+  border-radius: $std-radius;
+  padding: $general-padding;
+  margin-bottom: 30px;
 }

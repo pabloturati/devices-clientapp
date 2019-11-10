@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import CustomModal from 'atomicDesign/molecules/CustomModal/CustomModal'
-import { Button } from 'reactstrap'
+import BaseButton from 'atomicDesign/atoms/BaseButton/BaseButton'
 import './NotifyModal.scss'
 
 const NotifyModal = ({
@@ -16,7 +16,7 @@ const NotifyModal = ({
       {header && <h1>{header}</h1>}
       {message && <p>{message}</p>}
       <div className='o__notify-modal__button'>
-        <Button color='secondary'>{buttonLabel}</Button>
+        <BaseButton content={buttonLabel} size='md' action={toggleModal} />
       </div>
     </div>
   </CustomModal>

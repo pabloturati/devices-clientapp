@@ -17,16 +17,16 @@ $xlarge-font-size: 22px;
   color: $main-color;
 }
 
-%main-title {
-  font-size: $xlarge-font-size;
-  line-height: 24px;
-  font-weight: 600;
-  color: $main-color;
-}
-
 %secondary-title {
   font-size: $large-font-size;
   line-height: 20px;
   font-weight: 500;
+  color: $main-color;
+}
+
+%main-title {
+  font-size: $xlarge-font-size;
+  line-height: 24px;
+  font-weight: 600;
   color: $main-color;
 }

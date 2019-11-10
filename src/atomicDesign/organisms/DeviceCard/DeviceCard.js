@@ -1,6 +1,8 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import ContentLabel from 'atomicDesign/molecules/ContentLabel/ContentLabel'
+import routes from 'projectData/routes'
 import './DeviceCard.scss'
 
 const DeviceCard = ({
@@ -17,7 +19,7 @@ const DeviceCard = ({
   ]
 
   return (
-    <div className='o__device-card'>
+    <Link to={`${routes.edit}/${id}`} className='o__device-card'>
       <div>
         <div>
           {fields.map((field, idx) => (
@@ -30,7 +32,7 @@ const DeviceCard = ({
         </div>
       </div>
       <img className='o__device-card__type-img' src={logo} alt='System logo' />
-    </div>
+    </Link>
   )
 }
 

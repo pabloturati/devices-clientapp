@@ -10,6 +10,11 @@
   box-shadow: 0 10px 15px 0 var(--card-boxshadow);
   background-color: var(--light-gray);
 
+  &:hover {
+    text-decoration: none;
+    background-color: var(--light-blue);
+  }
+
   &__type-img {
     width: 80px;
   }

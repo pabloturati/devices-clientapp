@@ -10,10 +10,9 @@ import {
   useRedirect,
   useToggleView
 } from 'sharedFunctions/customHooks'
-import { postData } from 'sharedFunctions/apiRequest'
+import { postData, updateData } from 'sharedFunctions/apiRequest'
 import routes from 'projectData/routes'
 import {
-  Button,
   Form,
   FormGroup,
   Label,
@@ -21,14 +20,16 @@ import {
   FormFeedback,
   FormText
 } from 'reactstrap'
+import BaseButton from 'atomicDesign/atoms/BaseButton/BaseButton'
 
-const CRUDForm = props => {
-  // Form values state handler
+const CRUDForm = ({ initData }) => {
+  // Form values state handler. Initialized empty if creating new.
   const { content: formValues, updateVal } = useObject({
-    systemName: '',
-    systemType: STATION_TYPES[0].type, // Defaults to Windows PC
-    hddCapacity: ''
+    systemName: initData ? initData.system_name : '',
+    systemType: initData ? initData.type : STATION_TYPES[0].type, // Defaults to Windows PC
+    hddCapacity: initData ? initData.hdd_capacity : ''
   })
+
   const { systemName, systemType, hddCapacity } = formValues
 
   // Redirect state handler
@@ -44,7 +45,17 @@ const CRUDForm = props => {
       type: matchSystemType(systemType),
       hdd_capacity: `${hddCapacity}`
     }
-    postData(apiEndpoints.postDevice, body, toggleModal)
+
+    // Update the device or create a new one
+    if (initData) {
+      updateData(
+        `${apiEndpoints.updateDevice}/${initData.id}`,
+        body,
+        toggleModal
+      )
+    } else {
+      postData(apiEndpoints.postDevice, body, toggleModal)
+    }
   }
 
   const fields = [
@@ -81,9 +92,7 @@ const CRUDForm = props => {
 
   const modalProps = {
     isModalOpen: viewStatus,
-    toggleModal: () => {
-      activateRedirect()
-    },
+    toggleModal: () => activateRedirect(),
     header: 'Success!',
     message: `New ${systemName} with ${systemType} OS and ${hddCapacity} GB capacity was registered.`
   }
@@ -120,7 +129,12 @@ const CRUDForm = props => {
           </FormFeedback>
           <FormText>Provide the HDD Capacity of the system in GB</FormText>
         </FormGroup>
-        <Button>Submit</Button>
+        <BaseButton
+          content={initData ? 'Update Device' : 'Create new device'}
+          size='md'
+          color='info'
+          type='submit'
+        />
       </Form>
       <NotifyModal {...modalProps} />
     </div>
@@ -140,6 +154,10 @@ function matchSystemType (systemType) {
     .identifier
 }
 
-CRUDForm.propTypes = {}
+CRUDForm.propTypes = {
+  initData: PropTypes.objectOf(
+    PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+  )
+}
 
 export default CRUDForm

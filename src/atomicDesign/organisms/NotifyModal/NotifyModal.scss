@@ -1,6 +1,22 @@
+@import "styles/components/_text.scss";
+@import "styles/components/_page-spacing.scss";
+
 .o__notify-modal {
+  h1 {
+    @extend %main-title;
+  }
+
   p {
+    @extend %secondary-title;
+    margin-bottom: $general-padding;
     text-align: center;
-    line-height: 22px;
+  }
+  &__button {
+    text-align: center;
+
+    .a__base-button {
+      height: 50px;
+      width: 70px;
+    }
   }
 }

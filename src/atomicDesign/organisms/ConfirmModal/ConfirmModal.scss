@@ -1,0 +1,39 @@
+@import "styles/components/_text.scss";
+@import "styles/components/_page-spacing.scss";
+@import "styles/helpers/_flex.scss";
+@import "styles/layout/_break-points.scss";
+
+.o__confirm-modal {
+  @media screen and (min-width: $screen-md) {
+    padding: $general-padding;
+  }
+
+  h1 {
+    @extend %main-title;
+    margin-bottom: 30px;
+  }
+  &__container {
+    @extend %flex-column-center;
+
+    p {
+      @extend %label-text;
+      margin-bottom: $general-padding;
+      text-align: center;
+      max-width: 380px;
+    }
+    &__button {
+      text-align: center;
+
+      .a__base-button {
+        height: 50px;
+        width: 70px;
+      }
+    }
+
+    &__button-box {
+      width: 100%;
+      @extend %flex-space;
+      justify-content: space-around;
+    }
+  }
+}

@@ -1,0 +1,7 @@
+@import "styles/helpers/_flex.scss";
+@import "styles/components/_page-spacing.scss";
+
+.p__crud-page {
+  padding: $general-padding;
+  @extend %flex-column;
+}

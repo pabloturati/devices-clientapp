@@ -2,13 +2,10 @@ import React, { useEffect, useState } from 'react'
 import Controls from 'atomicDesign/organisms/Controls/Controls'
 import Results from 'atomicDesign/organisms/Results/Results'
 import apiEndpoints from 'projectData/apiEndpoints'
-import {
-  STATION_TYPES,
-  BASE_FILTER_FLAGS,
-  SORT_BY_OPTIONS
-} from 'projectData/constants'
+import { BASE_FILTER_FLAGS, SORT_BY_OPTIONS } from 'projectData/constants'
 import { getData } from 'sharedFunctions/apiRequest'
 import { useObject } from 'sharedFunctions/customHooks'
+import { parseToFrontData } from 'sharedFunctions/sharedFunctions'
 
 const { all, none } = BASE_FILTER_FLAGS
 
@@ -24,9 +21,16 @@ const Home = () => {
     currSortValue: none
   })
 
+  const setDataCb = devices => {
+    setDevices(devices)
+    setVisibleDevices(devices)
+    setDeviceList(createDeviceList(devices))
+  }
+
+  // Fetch devices, parse them to fronend data struncture and save them
   const fetchDevices = () => {
     getData(apiEndpoints.getDevices, devices =>
-      configureData(devices, setDevices, setVisibleDevices, setDeviceList)
+      parseToFrontData(devices, setDataCb)
     )
   }
 
@@ -66,33 +70,6 @@ const Home = () => {
       <Results devices={visibleDevices} />
     </div>
   )
-}
-
-/**
- * Maps backend raw data to frontend data.
- * @function
- * @param {object} devices - Array of device data objects
- * @returns {void} - Actions:
- *  1. Parses Hdd_capacity from string to integer to be used for comparison.
- *  2. Matches system type to disk and system logos
- *  3. Updates devices object data and udpates component state.
- */
-function configureData (devices, setDevices, setVisibleDevices, setDeviceList) {
-  // Maps backend data
-  devices.forEach((device, idx) => {
-    // Parse HDD data to int
-    device.hdd_capacity = parseInt(device.hdd_capacity)
-
-    // Matched type to logos
-    const match = STATION_TYPES.filter(
-      stationType => device.type === stationType.identifier
-    )[0]
-
-    devices[idx] = { ...devices[idx], ...match }
-  })
-  setDevices(devices)
-  setVisibleDevices(devices)
-  setDeviceList(createDeviceList(devices))
 }
 
 /**

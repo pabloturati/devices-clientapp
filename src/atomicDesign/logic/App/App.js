@@ -14,7 +14,7 @@ const App = () => {
     },
     {
       exact: true,
-      path: routes.edit,
+      path: `${routes.edit}/:deviceId`,
       component: CRUDPage
     },
     {
