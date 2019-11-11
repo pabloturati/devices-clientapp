@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: src/atomicDesign/pages/CRUDPage/CRUDPage.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: src/atomicDesign/pages/CRUDPage/CRUDPage.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useEffect, useState } from 'react'
+import PropTypes from 'prop-types'
+import { Redirect } from 'react-router-dom'
+import CRUDForm from 'atomicDesign/organisms/CRUDForm/CRUDForm'
+import BaseButton from 'atomicDesign/atoms/BaseButton/BaseButton'
+import apiEndpoints from 'projectData/apiEndpoints'
+import NotifyModal from 'atomicDesign/organisms/NotifyModal/NotifyModal'
+import ConfirmModal from 'atomicDesign/organisms/ConfirmModal/ConfirmModal'
+import { deleteData, getData } from 'sharedFunctions/apiRequest'
+import { useRedirect, useToggleView } from 'sharedFunctions/customHooks'
+import { parseToFrontData } from 'sharedFunctions/sharedFunctions'
+import routes from 'projectData/routes'
+import './CRUDPage.scss'
+
+const CRUDPage = ({ match, location }) => {
+  // Redirect state handler
+  const { toRedirect, activateRedirect } = useRedirect()
+
+  let deviceId = null
+  if (match.params.deviceId) {
+    deviceId = match.params.deviceId
+  }
+
+  // Loading state. It no deviceId, goes to false.
+  const [loading, setLoading] = useState(!!deviceId)
+
+  // Notify delete modal
+  const {
+    viewStatus: notifyModalState,
+    toggleViewStatus: toggleDeleteNotifyModal
+  } = useToggleView()
+
+  // Confirm delete modal
+  const {
+    viewStatus: confirmDeleteModalState,
+    toggleViewStatus: toggleConfirmDeleteModal
+  } = useToggleView()
+
+  // Device data state from API (Applies only for EDIT)
+  const [initialDeviceData, setInitialData] = useState(null)
+
+  /** Parse the initial device data to frontend data and create messages */
+  const handleGetDeviceSuccess = rawData => {
+    parseToFrontData([rawData], parseData => setInitialData(parseData[0]))
+    setLoading(false)
+  }
+
+  /**
+   * If a deviceId is passed get it's data. (Applies only for EDIT)
+   */
+  const requestDeviceData = () => {
+    if (!deviceId) return
+    getData(`${apiEndpoints.getDevices}/${deviceId}`, handleGetDeviceSuccess)
+  }
+  useEffect(requestDeviceData, [deviceId])
+
+  // Request API DELETEs device
+  const requestDelete = () => {
+    deleteData(
+      `${apiEndpoints.deleteDevice}/${deviceId}`,
+      toggleDeleteNotifyModal
+    )
+  }
+
+  let confirmDeleteMessage, notifyDeleteMessage
+  if (initialDeviceData) {
+    const {
+      system_name: systemName,
+      hdd_capacity: capacity,
+      type
+    } = initialDeviceData
+    confirmDeleteMessage = `You are about to delete ${type} named ${systemName} with ${capacity} GB, this action cannot be undone. Do you wish to proceed?`
+    notifyDeleteMessage = `${type} named ${systemName} with ${capacity} GB and has been deleted.`
+  }
+
+  /** Notify a device was deleted */
+  const notifyModalProps = {
+    isModalOpen: notifyModalState,
+    toggleModal: () => activateRedirect(),
+    header: 'Deleted!',
+    message: notifyDeleteMessage
+  }
+
+  /** Confirm if user wishes to delete a device */
+  const confirmModalProps = {
+    isModalOpen: confirmDeleteModalState,
+    onProceed: () => {
+      toggleConfirmDeleteModal()
+      requestDelete()
+    },
+    proceedLabel: 'Delete',
+    cancelLabel: ' Cancel',
+    onCancel: toggleConfirmDeleteModal,
+    header: 'Careful there!',
+    message: confirmDeleteMessage
+  }
+
+  // Clears edit device data if location changes to add route
+  const clearEditData = () => {
+    if (location.pathname === routes.add) {
+      deviceId = null
+      setInitialData(null)
+    }
+  }
+  useEffect(clearEditData, [location])
+
+  if (toRedirect) return &lt;Redirect to={routes.home} />
+
+  return (
+    &lt;div className='p__crud-page'>
+      {!loading &amp;&amp; &lt;CRUDForm initData={initialDeviceData} />}
+      {deviceId &amp;&amp; (
+        &lt;BaseButton
+          action={toggleConfirmDeleteModal}
+          content={'Delete device'}
+          size='lg'
+          color={'warning'}
+        />
+      )}
+      &lt;NotifyModal {...notifyModalProps} />
+      &lt;ConfirmModal {...confirmModalProps} />
+    &lt;/div>
+  )
+}
+
+CRUDPage.propTypes = {
+  match: PropTypes.objectOf(
+    PropTypes.oneOfType([PropTypes.bool, PropTypes.string, PropTypes.object])
+  ),
+  location: PropTypes.object.isRequired
+}
+
+export default CRUDPage
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#createDeviceList">createDeviceList</a></li><li><a href="global.html#deleteData">deleteData</a></li><li><a href="global.html#filterDevices">filterDevices</a></li><li><a href="global.html#getData">getData</a></li><li><a href="global.html#matchSystemType">matchSystemType</a></li><li><a href="global.html#navigateTo">navigateTo</a></li><li><a href="global.html#parseToFrontData">parseToFrontData</a></li><li><a href="global.html#postConfig">postConfig</a></li><li><a href="global.html#putConfig">putConfig</a></li><li><a href="global.html#sortDevices">sortDevices</a></li><li><a href="global.html#useObject">useObject</a></li><li><a href="global.html#useRedirect">useRedirect</a></li><li><a href="global.html#useToggleView">useToggleView</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Sun Nov 10 2019 07:42:15 GMT-0500 (EST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
