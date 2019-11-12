@@ -1,3 +1,7 @@
+import apiEndpoints from '../../src/projectData/apiEndpoints'
+
+const { getDevices, postDevice, deleteDevice, updateDevice } = apiEndpoints
+
 // Testing viewport
 const viewport = 'iphone-6'
 
@@ -16,6 +20,11 @@ export const navigateTo = (route, verifyCallback) => {
 
 export const initializeViewAndServer = () => {
   cy.viewport(viewport)
+  cy.server()
+  cy.route('GET', getDevices).as('getDevices')
+  cy.route('POST', postDevice).as('postDevice')
+  cy.route('DELETE', deleteDevice).as('deleteDevice')
+  cy.route('PUT', updateDevice).as('updateDevice')
 }
 
 export const initializeViewAndNavigateTo = route => {

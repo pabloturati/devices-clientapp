@@ -12,6 +12,41 @@ Continuous deployment uses [Azure Pipelines](https://azure.microsoft.com/en-us/s
 
 This project was built upon request by [ninjarmm](https://www.ninjarmm.com/).
 
+## Quick start guide
+
+To run the project's server:
+
+1. Clone [devicesTask_serverApp](https://github.com/NinjaMSP/devicesTask_serverApp) repo to a local directory.
+
+2. Navigate to the repo forlder and install dependencies using `npm install`.
+
+3. Once installed, start the server using the following script `npm start`.  The server will run by default in [http://localhost:3000/](http://localhost:3000/).
+
+Refer the repo readme file for furter information.
+
+Once the server is running, to run this project:
+
+1. Clone the project repo [devices-clientapp](https://github.com/pabloturati/devices-clientapp) into a local folder.
+
+2. Navigate to the repository directory and run `npm install`
+
+3. To start the project use the command `npm start`.  Project will be served in port 5000. If the default browser does not open, navigate to [http://localhost:5000/](http://localhost:5000/).
+
+## Testing 
+
+#### `npm run test`
+
+Launches the test runner in the interactive watch mode.<br />
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
+#### `npm run cypress:open`
+
+Launches the functional testing with the Cypress test runner in the interactive watch mode.
+
+#### `npm run cypress`
+
+Runs all the functional tests using the Cypress API in the console.
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -27,16 +62,6 @@ Open [http://localhost:5000](http://localhost:5000) to view it in the browser.
 
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
-
-#### `npm run test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-#### `npm run cypress`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 #### `npm run lint`
 

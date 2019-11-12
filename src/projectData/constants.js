@@ -6,25 +6,25 @@ import winLogo from 'projectAssets/stations/winlogo.png'
 // Station img
 import macDrive from 'projectAssets/drives/macdrive.png'
 import winDrive from 'projectAssets/drives/windrive.png'
+import DEVICE_TYPES from 'projectData/deviceTypes'
+
+const { windows, winServer, mac } = DEVICE_TYPES
 
 export const STATION_TYPES = [
   {
-    identifier: 'WINDOWS_WORKSTATION',
     drive: winDrive,
     logo: winLogo,
-    type: 'Windows PC'
+    ...windows
   },
   {
-    identifier: 'WINDOWS_SERVER',
     drive: winDrive,
     logo: serverLogo,
-    type: 'Windows Server'
+    ...winServer
   },
   {
-    identifier: 'MAC',
     drive: macDrive,
     logo: macLogo,
-    type: 'Mac'
+    ...mac
   }
 ]
 

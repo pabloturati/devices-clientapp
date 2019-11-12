@@ -14,9 +14,14 @@ const DeviceCard = ({
   drive
 }) => {
   const fields = [
-    { label: 'Type: ', content: type },
-    { label: 'System name:', content: systemName }
+    { label: 'Type: ', content: type, customClass: 'type' },
+    { label: 'System name:', content: systemName, customClass: 'system_name' }
   ]
+  const capacityLabel = {
+    label: 'Capacity:',
+    content: `${capacity} GB`,
+    customClass: 'hdd_capacity'
+  }
 
   return (
     <Link to={`${routes.edit}/${id}`} className='o__device-card'>
@@ -28,7 +33,7 @@ const DeviceCard = ({
         </div>
         <div className='o__device-card__capacity'>
           <img src={drive} alt='Disk' />
-          <ContentLabel label='Capacity:' content={`${capacity} GB`} />
+          <ContentLabel {...capacityLabel} />
         </div>
       </div>
       <img className='o__device-card__type-img' src={logo} alt='System logo' />
