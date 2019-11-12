@@ -7,6 +7,8 @@ import {
 import routes from '../../src/projectData/routes'
 import apiEndpoints from '../../src/projectData/apiEndpoints'
 
+const { deleteDevice, updateDevice } = apiEndpoints
+
 // GET all Devices Tests
 describe('Test data request contains devices in homepage, cards navigate to edit device and edit device updates cards', () => {
   before(() => initializeServerAndNavigateTo(routes.home))
@@ -48,7 +50,7 @@ describe('Test data request contains devices in homepage, cards navigate to edit
     const randomCap = randomHDDCapGenerator()
     const randomDevice = randomDeviceChoice()
     cy.server()
-    cy.route('PUT', `${apiEndpoints.updateDevice}/**`).as('updateDevice')
+    cy.route('PUT', `${updateDevice}/**`).as('updateDevice')
 
     // Change the system name field
     cy.get('[name="o__crud-form__input__system_name"]')
@@ -97,6 +99,58 @@ describe('Test data request contains devices in homepage, cards navigate to edit
       .then($el => {
         const numericHDD = parseInt($el[0].innerHTML.match(/^(\d)+/))
         expect(numericHDD).to.equal(randomCap)
+      })
+  })
+})
+
+describe('Validates DELETE', () => {
+  before(() => initializeServerAndNavigateTo(routes.home))
+  it('Home page is rendered and API works', () => {
+    cy.url().should('include', routes.home)
+    cy.wait('@getDevices')
+  })
+  it('Saves the initial number of devices, deletes the first item and compares with the new number of devices', () => {
+    // Initialize server
+    cy.server()
+    cy.route('DELETE', `${deleteDevice}/*`).as('deleteDevice')
+
+    // Get card count, save it and click on the first card
+    let initialNumCards
+    cy.get('.o__device-card')
+      .should('be.visible')
+      .then($cards => {
+        initialNumCards = $cards.length
+        expect(initialNumCards).to.be.greaterThan(0)
+      })
+      .first()
+      .click()
+    // Verify that it navigated to the edit page
+    cy.url().should('contain', routes.edit)
+    cy.get('.p__crud-page')
+      .children('button')
+      .should('be.visible')
+      .and('have.length', 1)
+      .click()
+    // Confirm delete item
+    cy.get('.o__confirm-modal__container__button-box')
+      .children('button')
+      .eq(1)
+      .should('be.visible')
+      .and('have.length', 1)
+      .click()
+    // Wait for server resposne and acknowledge delete success
+    cy.wait('@deleteDevice')
+    cy.get('.o__notify-modal__button')
+      .children('button')
+      .should('be.visible')
+      .click()
+    // Expect automatic navigation to homepage
+    cy.url().should('contain', routes.home)
+    // Get number of cards and compare it to the previous amount to make sure one was removed
+    cy.get('.o__device-card')
+      .should('be.visible')
+      .then($cards => {
+        expect($cards.length).to.be.lessThan(initialNumCards)
       })
   })
 })
