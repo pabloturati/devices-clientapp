@@ -127,6 +127,7 @@ function sortDevices (devices, criteria) {
 
 function createDeviceList (devices) {
   const typeArray = devices.map(device => device.type)
+  typeArray.sort()
   return [all, ...new Set(typeArray)]
 }
 

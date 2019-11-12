@@ -61,16 +61,16 @@ describe('Verify Operating system filter functionality', () => {
       expect($element[0].innerHTML).to.be.equal(mac.type)
     })
   })
-  it('Test if filter selects Windows Server only', () => {
+  it('Test if filter selects Windows PC only', () => {
     openDropDownAndSelect(0, 2)
     cy.get('.a__content-label__type').each($element => {
-      expect($element[0].innerHTML).to.be.equal(winServer.type)
+      expect($element[0].innerHTML).to.be.equal(windows.type)
     })
   })
-  it('Test if filter selects Windows PC only', () => {
+  it('Test if filter selects Windows Server only', () => {
     openDropDownAndSelect(0, 3)
     cy.get('.a__content-label__type').each($element => {
-      expect($element[0].innerHTML).to.be.equal(windows.type)
+      expect($element[0].innerHTML).to.be.equal(winServer.type)
     })
   })
 })
