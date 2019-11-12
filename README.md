@@ -22,9 +22,9 @@ To run the project's server:
 
 3. Once installed, start the server using the following script `npm start`.  The server will run by default in [http://localhost:3000/](http://localhost:3000/).
 
-Refer the repo (devicesTask_serverApp]) readme file for further information.
+Refer the repo [devicesTask_serverApp](https://github.com/NinjaMSP/devicesTask_serverApp) readme file for further information.
 
-Once the server is running, to run the fronend single application following the next steps:
+Once the server is running, to run the frontend single application project [devices-clientapp](https://github.com/pabloturati/devices-clientapp), follow the next steps:
 
 1. Clone the frontend project repo [devices-clientapp](https://github.com/pabloturati/devices-clientapp) into a local folder.
 
