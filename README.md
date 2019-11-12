@@ -6,7 +6,7 @@ This project is a small frontend CRUD application for Devices containing: Device
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and uses visual elementes from [Reactstrap](https://reactstrap.github.io/) and [material-ui](https://material-ui.com/).
 
-Project automated testing uses the following frameworks: [cypress][https://www.cypress.io/] for functional testing and [Jest](https://jestjs.io/) with [Enzime](https://www.npmjs.com/package/enzyme) for unit testing.
+Project automated testing uses the following frameworks: [cypress](https://www.cypress.io/) for functional testing and [Jest](https://jestjs.io/) with [Enzime](https://www.npmjs.com/package/enzyme) for unit testing.
 
 Continuous deployment uses [Azure Pipelines](https://azure.microsoft.com/en-us/services/devops/pipelines/) for integration and testing using Github. Visit [this link](https://dev.azure.com/pabloturati/devices-clientapp/_build?definitionId=2) to see the project pipelines. 
 
@@ -20,17 +20,17 @@ To run the project's server:
 
 2. Navigate to the repo directory and install dependencies using `npm install`.
 
-3. Once installed, start the server using the following script `npm start`.  The server will run by default in [http://localhost:3000/](http://localhost:3000/).
+3. Once installed, start the server using the following script `npm start`.  The server will run by default on [http://localhost:3000/](http://localhost:3000/).
 
 Refer the repo [devicesTask_serverApp](https://github.com/NinjaMSP/devicesTask_serverApp) readme file for further information.
 
-Once the server is running, to run the frontend single application project [devices-clientapp](https://github.com/pabloturati/devices-clientapp), follow the next steps:
+Once the server is running, to run the frontend single page application for this project [devices-clientapp](https://github.com/pabloturati/devices-clientapp), follow the next steps:
 
 1. Clone the frontend project repo [devices-clientapp](https://github.com/pabloturati/devices-clientapp) into a local folder.
 
-2. Navigate to the repository directory and run `npm install`
+2. Navigate to the repository directory and run `npm install` to install of the project dependencies
 
-3. To start the project, use the command `npm start`.  Project will be served in port 5000. If the default browser does not open, navigate to [http://localhost:5000/](http://localhost:5000/).
+3. To start the project, use the command `npm start`.  The application will be served on port 5000. If the default browser does not open, navigate to [http://localhost:5000/](http://localhost:5000/).
 
 ## Testing 
 

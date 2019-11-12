@@ -7,7 +7,7 @@ import {
 import routes from '../../src/projectData/routes'
 import apiEndpoints from '../../src/projectData/apiEndpoints'
 
-const { deleteDevice, updateDevice } = apiEndpoints
+const { deleteDevice, getDevices, updateDevice, postDevice } = apiEndpoints
 
 // GET all Devices Tests
 describe('Test data request contains devices in homepage, cards navigate to edit device and edit device updates cards', () => {
@@ -152,5 +152,60 @@ describe('Validates DELETE', () => {
       .then($cards => {
         expect($cards.length).to.be.lessThan(initialNumCards)
       })
+  })
+})
+
+describe('Test device creation', () => {
+  before(() => {
+    initializeServerAndNavigateTo(routes.home)
+  })
+
+  it('Home page is rendered and API works', () => {
+    cy.url().should('include', routes.home)
+    cy.wait('@getDevices')
+  })
+
+  it('Navigates to create device page', () => {
+    cy.get('.m__link-button')
+      .find('button')
+      .should('be.visible')
+      .and('have.length', 1)
+      .click()
+    cy.url().should('contain', routes.add)
+  })
+
+  it('Populates new data to create device form and sends request', () => {
+    // Generate random values for form fields
+    const randomName = generateRandomUpperCaseLetters()
+    const randomCap = randomHDDCapGenerator()
+    const randomDevice = randomDeviceChoice()
+
+    cy.server()
+    cy.route('POST', postDevice).as('postDevice')
+    cy.route('GET', getDevices).as('getDevices')
+
+    // Change the system name field
+    cy.get('[name="o__crud-form__input__system_name"]').type(randomName)
+    // Change the system hdd capacity
+    cy.get('[name="o__crud-form__input__hdd-capacity"]').type(randomCap)
+    // Change the system type
+    cy.get('[name="o__crud-form__input__type"]').select(randomDevice)
+
+    // Send the POST request
+    cy.get('[type="submit"]')
+      .should('have.length', 1)
+      .click()
+    // Wait for request response and hit OK in modal
+    cy.wait('@postDevice')
+    cy.get('.o__notify-modal__button')
+      .children('button')
+      .should('be.visible')
+      .click()
+
+    cy.wait('@getDevices')
+    cy.url().should('contain', routes.home)
+
+    // Search the loaded devices to see if the newly created device exists
+    cy.get('.a__content-label__system_name').contains(randomName)
   })
 })
