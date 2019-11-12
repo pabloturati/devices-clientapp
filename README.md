@@ -30,7 +30,7 @@ Once the server is running, to run the frontend single application project [devi
 
 2. Navigate to the repository directory and run `npm install`
 
-3. To start the project use the command `npm start`.  Project will be served in port 5000. If the default browser does not open, navigate to [http://localhost:5000/](http://localhost:5000/).
+3. To start the project, use the command `npm start`.  Project will be served in port 5000. If the default browser does not open, navigate to [http://localhost:5000/](http://localhost:5000/).
 
 ## Testing 
 
