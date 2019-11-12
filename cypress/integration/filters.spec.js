@@ -110,4 +110,29 @@ describe('Verify sort system filter functionality', () => {
       }
     })
   })
+  it('Verifies that the clear filter button works', () => {
+    // Filters should initially be set to 'All' and 'None'
+    cy.get('.MuiInputBase-inputSelect').each($el => {
+      expect($el[0].innerHTML).to.match(/^(All|None)+/)
+    })
+
+    // Opens dropdown to random
+    openDropDownAndSelect(0, Math.floor(Math.random() * 3) + 1)
+    openDropDownAndSelect(1, Math.floor(Math.random() * 3) + 1)
+
+    // Assert filter values changed
+    cy.get('.MuiInputBase-inputSelect').each($el => {
+      expect($el[0].innerHTML).to.not.match(/^(All|None)+/)
+    })
+
+    // Click on the filter button
+    cy.get('.o__controls button')
+      .should('have.length', 1)
+      .click()
+
+    // Assert filter values are back to initial
+    cy.get('.MuiInputBase-inputSelect').each($el => {
+      expect($el[0].innerHTML).to.match(/^(All|None)+/)
+    })
+  })
 })
