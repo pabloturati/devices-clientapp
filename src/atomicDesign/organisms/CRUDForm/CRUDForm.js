@@ -183,7 +183,7 @@ const CRUDForm = ({ initData }) => {
           <Label for={fields[2].id}>Disk Capacity</Label>
           <Input {...fields[2]} />
           <FormFeedback>
-            Only numbers in the 1 to 10,000 range are allowed
+            Only numbers in the 1 to 1,000,000 range are allowed
           </FormFeedback>
           <FormText>
             Provide the HDD Capacity of the system in GB. Maximum 1,000,000 GB.
