@@ -41,7 +41,7 @@ export const initializeServerAndNavigateTo = route => {
 
 export const generateRandomUpperCaseLetters = () => {
   return Math.random()
-    .toString(36)
+    .toString(30)
     .replace(/[^A-Za-z]+/g, '')
     .toUpperCase()
 }

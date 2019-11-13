@@ -10,6 +10,11 @@ import DEVICE_TYPES from 'projectData/deviceTypes'
 
 const { windows, winServer, mac } = DEVICE_TYPES
 
+export const FIELD_LENGTHS = {
+  deviceMaxLength: 30,
+  maxHddCapacity: 1000000
+}
+
 export const STATION_TYPES = [
   {
     drive: winDrive,
