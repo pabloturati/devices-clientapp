@@ -46,8 +46,8 @@ describe('Test data request contains devices in homepage, cards navigate to edit
 
   it('Changes the device name and disk capacity', () => {
     // Generate random values for form fields
-    const randomName = generateRandomUpperCaseLetters()
-    const randomCap = randomHDDCapGenerator()
+    const randomValidName = generateRandomUpperCaseLetters()
+    const randomValidCap = randomHDDCapGenerator()
     const randomDevice = randomDeviceChoice()
     cy.server()
     cy.route('PUT', `${updateDevice}/**`).as('updateDevice')
@@ -55,11 +55,11 @@ describe('Test data request contains devices in homepage, cards navigate to edit
     // Change the system name field
     cy.get('[name="o__crud-form__input__system_name"]')
       .clear()
-      .type(randomName)
+      .type(randomValidName)
     // Change the system hdd capacity
     cy.get('[name="o__crud-form__input__hdd-capacity"]')
       .clear()
-      .type(randomCap)
+      .type(randomValidCap)
     // Change the system type
     cy.get('[name="o__crud-form__input__type"]').select(randomDevice)
     // Send the PUT request
@@ -90,7 +90,7 @@ describe('Test data request contains devices in homepage, cards navigate to edit
       .first()
       .find('.a__content-label__system_name')
       .then($el => {
-        expect($el[0].innerHTML).to.equal(randomName)
+        expect($el[0].innerHTML).to.equal(randomValidName)
       })
     // Validate HDD capacity change
     cy.get('.o__device-card')
@@ -98,7 +98,7 @@ describe('Test data request contains devices in homepage, cards navigate to edit
       .find('.a__content-label__hdd_capacity')
       .then($el => {
         const numericHDD = parseInt($el[0].innerHTML.match(/^(\d)+/))
-        expect(numericHDD).to.equal(randomCap)
+        expect(numericHDD).to.equal(randomValidCap)
       })
   })
 })
@@ -176,8 +176,8 @@ describe('Test device creation', () => {
 
   it('Populates new data to create device form and sends request', () => {
     // Generate random values for form fields
-    const randomName = generateRandomUpperCaseLetters()
-    const randomCap = randomHDDCapGenerator()
+    const randomValidName = generateRandomUpperCaseLetters()
+    const randomValidCap = randomHDDCapGenerator()
     const randomDevice = randomDeviceChoice()
 
     cy.server()
@@ -185,9 +185,9 @@ describe('Test device creation', () => {
     cy.route('GET', getDevices).as('getDevices')
 
     // Change the system name field
-    cy.get('[name="o__crud-form__input__system_name"]').type(randomName)
+    cy.get('[name="o__crud-form__input__system_name"]').type(randomValidName)
     // Change the system hdd capacity
-    cy.get('[name="o__crud-form__input__hdd-capacity"]').type(randomCap)
+    cy.get('[name="o__crud-form__input__hdd-capacity"]').type(randomValidCap)
     // Change the system type
     cy.get('[name="o__crud-form__input__type"]').select(randomDevice)
 
@@ -206,6 +206,6 @@ describe('Test device creation', () => {
     cy.url().should('contain', routes.home)
 
     // Search the loaded devices to see if the newly created device exists
-    cy.get('.a__content-label__system_name').contains(randomName)
+    cy.get('.a__content-label__system_name').contains(randomValidName)
   })
 })

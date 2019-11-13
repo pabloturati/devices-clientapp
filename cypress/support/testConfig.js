@@ -3,6 +3,7 @@ import DEVICE_TYPES from '../../src/projectData/deviceTypes'
 
 // Testing viewport
 const viewport = 'iphone-6'
+export const INVALID_SYSTEM_NAME = 'a-sdf/]13-08a*dfa=$%^sdfsdf'
 
 /**
  * Navigates the robot to the given route
